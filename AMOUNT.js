@@ -1,11 +1,13 @@
 const express = require("express");
+const cors = require("cors");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 10000; // Use the Render-assigned port
 
 app.use(express.json());
+app.use(cors()); // Enable CORS
 
-console.log("Starting the server..."); // Add this for debugging
+console.log("Starting the server..."); // Debugging
 
 const baseUrl = "https://services.leadconnectorhq.com/products/";
 const locationId = "f4J9w7Xpu7w4PftyYw2j"; // Replace with actual Location ID
@@ -60,6 +62,7 @@ app.post("/fetch-prices", async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+// Bind to "0.0.0.0" for Render deployment
+app.listen(PORT, "0.0.0.0", () => {
     console.log(`Server is running on port ${PORT}`);
 });
