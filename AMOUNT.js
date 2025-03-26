@@ -27,7 +27,8 @@ app.post("/fetch-prices", async (req, res) => {
     }
 
     try {
-        const fetch = (await import("node-fetch")).default;
+        const fetch = require("node-fetch");
+
 
         const responses = await Promise.all(productIds.map(async (productId) => {
             const url = `${baseUrl}${productId}/price?locationId=${locationId}`;
